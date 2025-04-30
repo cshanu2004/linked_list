@@ -1,0 +1,176 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct list
+{
+    int data;
+    struct list *next;
+} ll;
+ll *makenode()
+{
+    ll *p = (ll *)malloc(sizeof(ll * ));
+    if(p==0){
+        printf("memory allocation failed\n");
+        exit(1);
+    }
+    p->next = 0;
+    printf("Enter the data : ");
+    scanf("%d", &p->data);
+    return p;
+}
+ll *addfirst(ll *h)
+{
+    ll *p = makenode();
+
+        p->next = h;
+        
+        return p;
+    }
+ll *addLast(ll *h){
+        ll *p = makenode(), *t;
+        if(h==0){
+            return p;
+
+        }
+        t=h;
+        while (t->next!=0)
+        {
+            t=t->next;
+        }
+        t->next=p;
+        return h;
+        
+    }
+ll *delfirst(ll *h){
+    ll *p;
+    if(h==0){
+        printf("linkedlist is empty....");
+        return h;
+    }
+    else{
+        p=h;
+        h=h->next;
+        printf("deleting.....%d",p->data);
+        free(p);
+        return h;
+
+    }
+}
+ll *dellast(ll *h){
+    ll *p,*t;
+    if (h==0){
+        printf("List is already empty");
+        return h;
+    }
+    if(h->next==0){
+        printf("\n Deleting ........%d",h->data);
+        free(h);
+        return 0;
+    }
+    t=h;
+    while(t->next->next!=0){
+        t=t->next;
+    }
+    p=t->next;
+    t->next=0;
+    printf("\nDeleting........%d",p->data);
+    free(p);
+    return h;
+}
+ll *addpos(ll *h){
+    ll *p,*t;
+    int n=0,i,pos;
+    
+    t=h;
+    while (t!=0){
+        t=t->next;
+        n++;
+    }
+    printf("\n we have %d nodes.Enter the position for add new node: ",n);
+    scanf("%d",&pos);
+    if (pos<1||pos>n+1){
+        printf("This is not possible");
+        return h;
+    }
+    if(pos==1){
+        h=addfirst(h);
+        return h;
+    }
+    if (pos==n+1)
+    {
+        h=addLast(h);  
+        return h;
+    }
+    t=h;
+    for ( i = 2; i < pos; i++)
+    {
+        t=t->next;
+
+    }
+    
+    p=makenode();
+    p->next=t->next;
+    t->next=p;
+    return h;
+}
+ll* Delpos(ll *h){
+    ll *p,*t;
+    if(h==0){
+        printf("Linkedlist already empty");
+        return h;
+
+    }
+    if(p->next==0){
+       
+    }
+}
+
+void display(ll *h)
+{
+    if (h == 0)
+    {
+        printf("Empty list ......\n");
+        
+    }else{
+        while (h != 0)
+    {
+        printf("Data = %d\n", h->data);
+        h = h->next;
+       
+    }
+    
+    }
+    
+    
+}
+int main()
+{
+    ll *h = 0;
+    int ch;
+    while (1)
+    {
+        printf("\n1.............AddFirst");
+        printf("\n2..............AddLast");
+        printf("\n3..............DelFirst");
+        printf("\n4..............DelLast");
+        printf("\n5...............AddPos");
+        // printf("\n6................Delpos");
+        printf("\n7.............Display");
+        printf("\n8.............Exit");
+        printf("\n\n\n.............Enter choice ");
+        scanf("%d", &ch);
+    
+    switch (ch)
+    {
+    case 1: h=addfirst(h);break;
+    
+    case 2:h=addLast(h);break;
+    case 3:h=delfirst(h);break;
+    case 4:h=dellast(h);break;
+    case 5:h=addpos(h);break;
+    case 7:display(h);break;
+    case 8:exit(0);
+    default:printf("invalid choice.........");
+    }
+}
+    return 0;
+}
