@@ -1,0 +1,170 @@
+#include <iostream>
+using namespace std;
+class Node{
+    public:
+    int data;
+    Node *next,*prev;
+    Node(int value){
+     data = value;
+     next = NULL;
+     prev = NULL;
+    }
+};
+Node *addfirst(Node *head){
+int n;
+cout<<"Enter the data";
+cin>>n;
+Node *new_node=new Node(n);
+if(head==NULL){
+    head=new_node;
+
+}
+else{
+    head->prev=new_node;
+    new_node->next=head;
+    head=new_node;
+}
+return head;
+}
+Node *addlast(Node *head ){
+    int n;
+    cout<<"Enter the data";
+    cin>>n;
+    Node *tail=head;
+    Node *new_node=new Node(n);
+    if(head==NULL){
+        head=new_node;
+
+    }
+    else{
+        while(tail->next!=NULL){
+            tail=tail->next;
+
+        }
+        tail->next=new_node;
+        new_node->prev=tail;
+    }
+     return head;
+}
+Node *addpos(Node *head){
+    int pos,n;
+    cout<<"Enter the data";
+    cin>>n;
+    Node *new_node=new Node(n);
+    cout<<"Enter the position";
+    cin>>pos;
+    if(pos==1){
+        return addfirst(head);
+    }
+    Node *tail = head;
+
+    for(int i=2;i<pos-1 && tail!=NULL;i++ ){
+    tail=tail->next;
+
+    }
+      tail->next= new_node;
+      new_node->next=tail->next;
+      new_node->prev=tail;
+      if(new_node->next!=NULL){
+        new_node->next->prev=new_node;
+
+      }
+      return head;
+
+}
+Node *delfirst(Node* head){
+Node *tail = head;
+ if(head==NULL){
+  cout<<"List already empty";
+  return  head;
+ }
+ else{
+cout<<"deleting: "<<tail->data;
+head = head->next;
+delete tail;
+}
+ return head;
+}
+Node *dellast(Node*  head){
+Node *tail=head;
+if (head== NULL){
+    cout<<"Impossible event";
+
+}
+else if(head->next==NULL){
+    cout<<"deleting: "<<head->data;
+   
+    delete head ;
+    head=NULL;
+
+}
+else{
+    while(tail->next!=NULL){
+        tail=tail->next;
+    }
+    cout<<"deleting: "<<tail->data<<endl;
+    tail->prev->next=NULL;
+    delete tail;
+}
+return head;
+}
+Node *delpos(Node *head){
+    Node *tail=head;
+    int pos;
+    cout<<"enter the position";
+    cin>>pos;
+
+    if(head==NULL){
+        cout<<"No element";
+
+    }
+   Node *p;
+   for(int i=0;i<pos-1&&tail!=NULL;i++){
+    tail=tail->next;
+
+   }
+   p=tail->next;
+   cout<<"deleting: "<<p->data<<endl;
+   tail->next=p->next;
+   p->next->prev=tail;
+   return head;
+
+}
+
+void display(Node *head){
+    Node *tail=head;
+    
+    while(tail){
+        cout<<"Data: "<<tail->data<<endl;
+        tail=tail->next;
+    }
+}
+int main(){
+    Node *head =NULL;
+    int  ch;
+    while(1){
+        cout<<"1...................addfirst"<<endl;
+        cout<<"2...................addlast"<<endl;
+        cout<<"3...................addpos"<<endl;
+        cout<<"4....................delfirst"<<endl;
+        cout<<"5.....................dellast"<<endl;
+        cout<<"6.....................delpos"<<endl;
+        cout<<"7...................display"<<endl;
+        cout<<"Enter your choice: ";
+        cin>>ch;
+        switch(ch){
+          case 1: head=addfirst(head);break;
+          case 2: head=addlast(head);break;
+          case 3: head=addpos(head);break;
+          case 4: head=delfirst(head);break;
+          case 5: head=dellast(head);break;
+          case 6: head=delpos(head);break;
+          case 7: display(head);break; 
+          default:cout<<"Invalid choice";
+        }
+     } 
+
+    }   
+
+   
+
