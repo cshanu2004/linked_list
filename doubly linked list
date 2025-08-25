@@ -1,0 +1,126 @@
+#include <iostream>
+using namespace std;
+class Node {
+    public:
+    int data;
+    Node *next,*prev;
+    Node(int value){
+         data = value;
+         next = NULL;
+         prev =NULL;
+
+
+    }
+};
+Node *addfirst(Node *head){
+     int n;
+     cout<<"Enter the data";
+     cin>>n;
+     Node *new_node =new Node(n);
+     if(head==NULL){
+        head = new_node;
+        return head;
+
+     }
+     else{
+       
+        new_node->next = head;
+        head = new_node;
+        head->prev = new_node->prev;
+     }
+}
+Node *addlast(Node *head){
+    int n;
+    cout<<"Enter the data";
+    cin>>n;
+    Node *new_node = new Node(n);
+    Node *tail = head;
+
+if(head==NULL){
+        head = new_node;
+        return head;
+
+    }
+   while (tail->next!=head)
+   {
+     tail->next = tail;
+
+   }
+   new_node->next = head;
+   tail->next = new_node;
+   new_node->prev = tail;
+
+   
+}
+Node *delfirst(Node *head){
+    Node *tail = head;
+    if(head==NULL){
+        cout<<"impossible event";
+
+    }
+    
+
+}
+#include <iostream>
+using namespace std;
+class Node {
+    public:
+    int data;
+    Node *next,*prev;
+    Node(int value){
+         data = value;
+         next = NULL;
+         prev =NULL;
+
+
+    }
+};
+Node *addfirst(Node *head){
+     int n;
+     cout<<"Enter the data";
+     cin>>n;
+     Node *new_node =new Node(n);
+     if(head==NULL){
+        head = new_node;
+        return head;
+
+     }
+     else{
+       
+        new_node->next = head;
+        head = new_node;
+        head->prev = new_node->prev;
+     }
+}
+Node *addlast(Node *head){
+    int n;
+    cout<<"Enter the data";
+    cin>>n;
+    Node *new_node = new Node(n);
+    Node *tail = head;
+
+if(head==NULL){
+        head = new_node;
+        return head;
+
+    }
+   while (tail->next!=head)
+   {
+     tail->next = tail;
+
+   }
+   new_node->next = head;
+   tail->next = new_node;
+   new_node->prev = tail;
+
+   
+}
+Node *delfirst(Node *head){
+    Node *tail = head;
+    if(head==NULL){
+        cout<<"impossible event";
+
+    }
+    
+
+}
